@@ -1,2 +1,2 @@
 # CryptoPru
-Um jeito engrado de criptografar um dado
+Um jeito engraçado de criptografar um dado
