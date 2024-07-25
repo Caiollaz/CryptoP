@@ -1,11 +1,4 @@
-$(document).ready(function() {
-
-    console.log('JS Iniciado')
-        
-});
-
 function Encrypt(){
-    
     let descricao = $("#descricao").val();
     let crypt = cryptpru(descricao);
     
@@ -14,7 +7,6 @@ function Encrypt(){
 }
 
 function Decrypt(){
-
     let descricao = $("#descricao").val();
     let crypt = decryptpru(descricao);
     
@@ -46,4 +38,12 @@ const decryptpru = (prurase) => {
 
         }).join('')
     }).join(' ')
+}
+
+
+function speakText() {
+    let resultado = $("#resultado").val();
+
+    const speechSynthesisUtterance = new SpeechSynthesisUtterance(resultado);
+    window.speechSynthesis.speak(speechSynthesisUtterance);
 }
