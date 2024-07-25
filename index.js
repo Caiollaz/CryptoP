@@ -21,7 +21,7 @@ const cryptpru = (phrase) => {
 
             const charCode = letter.charCodeAt(0);
             const binary = charCode.toString(2).padStart(8, 0)
-            const prus = binary.replace(/0/g, 'pru, ').replace(/1/g, 'pruu, ').replace(/, $/, '')
+            const prus = binary.replace(/0/g, 'la ele, ').replace(/1/g, 'la elee, ').replace(/, $/, '')
  
             return prus
 
@@ -33,7 +33,7 @@ const decryptpru = (prurase) => {
     return prurase.split('~') .map((word) => {
         return word.split('-').map((letter) => {
 
-            const binary = letter.replace(/pruu(, )*/g, '1').replace(/pru(, )*/g, '0')
+            const binary = letter.replace(/la elee(, )*/g, '1').replace(/la ele(, )*/g, '0')
             return String.fromCharCode(parseInt(binary, 2))
 
         }).join('')
