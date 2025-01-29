@@ -15,31 +15,26 @@ function Decrypt(){
 }
 
 const cryptpru = (phrase) => {
-    return phrase.split(' ').map((word) => {
-        const wordLetters = word.split('')
-        return wordLetters.map((letter, index) => {
-
-            const charCode = letter.charCodeAt(0);
-            const binary = charCode.toString(2).padStart(8, 0)
-            const prus = binary.replace(/0/g, 'la ele, ').replace(/1/g, 'la elee, ').replace(/, $/, '')
- 
-            return prus
-
-        }).join('-')
-    }).join('~')
+    const vogais = 'aeiouáéíóúãõâêîôûàèìòùy';
+    let result = '';
+    let palavra = phrase.toLowerCase();
+    
+    for (let i = 0; i < palavra.length; i++) {
+        if (i === 0 || palavra[i-1] === ' ') {
+            result += 'p';
+        }
+        else if (vogais.includes(palavra[i]) && 
+                !vogais.includes(palavra[i-1])) {
+            result += 'p';
+        }
+        result += palavra[i];
+    }
+    return result;
 }
 
 const decryptpru = (prurase) => {
-    return prurase.split('~') .map((word) => {
-        return word.split('-').map((letter) => {
-
-            const binary = letter.replace(/la elee(, )*/g, '1').replace(/la ele(, )*/g, '0')
-            return String.fromCharCode(parseInt(binary, 2))
-
-        }).join('')
-    }).join(' ')
+    return prurase.replace(/p(?=[a-zçáéíóúãõâêîôûàèìòùy])/g, '');
 }
-
 
 function speakText() {
     let resultado = $("#resultado").val();
